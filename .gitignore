@@ -1,0 +1,12 @@
+# Zola generated output directory
+public/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE specific files (examples)
+.vscode/
+.idea/
+*.swp
+*.swo

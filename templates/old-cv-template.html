@@ -1,0 +1,34 @@
+<ul class="list-group list-group-flush">
+    {% for key, value in page.extra.facts %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+        <span class="text-nowrap">{{ key }}</span>
+        <span class="text-nowrap">{{ value | safe }}</span>
+    </li>
+    {% endfor %}
+</ul>
+
+{% for skill_group in page.extra.skills | group_by(attribute="category") %}
+<h4>{{ skill_group.grouper }}</h4>
+{% for skill in skill_group.list %}
+<small>{{ skill.name }}</small>
+<div class="skills">
+    <div class="skills-bar" style="width: {{ skill.level }}%"></div>
+</div>
+{% endfor %}
+{% endfor %}
+
+{% for position in page.extra.positions %}
+<div>{{ position.period }}</div>
+<h3>{{ position.role }}, <small>{{ position.company }}, {{ position.location }}</small></h3>
+<div>{{ position.description | markdown | safe }}</div>
+<ul>
+    {% for item in position.key_responsibilities %}
+    <li>{{ item | markdown | safe }}</li>
+    {% endfor %}
+</ul>
+<p>
+    {% for tag in position.skills_tags %}
+    <span class="badge text-body border border-1">{{ tag }}</span>
+    {% endfor %}
+</p>
+{% endfor %}
